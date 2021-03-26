@@ -1,2 +1,16 @@
 {% extends 'cities/base.html' %}
-{% block content %}{% endblock content %}
+{% block content %}
+<div class="row">
+   <div class="col-md-4">
+    <form action="" method="post">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Город</label>
+    <input type="text" class="form-control" name="name">
+    <div class="form-text">Напишите город для поиска требованного маршрута</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+</div>
+{% endblock content %}

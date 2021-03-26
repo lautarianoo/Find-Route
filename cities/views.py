@@ -1,8 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from cities.models import City
+from cities.forms import HtmlForm, CityForm
 
 def index(request):
-    return render(request, 'cities/index.html')
+    if request.method == 'POST':
+        form = CityForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = CityForm()
+    return render(request, 'cities/index.html', {'form': form})
 
 def list_city(request, pk=None):
     if pk:
