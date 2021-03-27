@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from cities.models import City
 from cities.forms import HtmlForm, CityForm
+from django.views.generic import DeleteView, DetailView
+from django.urls import reverse_lazy
+from django.core.paginator import Paginator
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
@@ -8,13 +13,27 @@ def index(request):
         if form.is_valid():
             form.save()
     form = CityForm()
-    return render(request, 'cities/index.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'cities/index.html', context)
 
 def list_city(request, pk=None):
-    if pk:
-        #city = City.objects.filter(id=pk).first()
-        city = get_object_or_404(City, id=pk)
-        return render(request, 'cities/detail.html', {'object': city})
     qs = City.objects.all()
-    context = {'object_list': qs}
+    lst = Paginator(qs, 2)
+    page_number = request.GET.get('page')
+    page_obj = lst.get_page(page_number)
+    context = {'page_obj': page_obj}
     return render(request, 'cities/cities.html', context)
+
+class CityDetailView(DetailView):
+    model = City
+    qs = City.objects.all()
+    template_name = 'cities/detail.html'
+
+class CityDeleteView(SuccessMessageMixin,DeleteView):
+    model = City
+    template_name = 'cities/delete.html'
+    success_url = reverse_lazy('cities:cities')
+
+    def get(self, request, *args, **kwargs):
+        messages.success(request, 'Город удален')
+        return self.post(request, *args, **kwargs)

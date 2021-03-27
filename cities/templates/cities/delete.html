@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'cities/base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-md-4">
+     <h1>Удаление города</h1>
+       <p>{{ object }}</p>
+    <form action="" method="post">
+    {% csrf_token %}
+  <div class="mb-3">
+  </div>
+  <input type="submit" class="form-control btn btn-primary" value="Delete">
+</form>
+  </div>
+</div>
+{% endblock content %}
