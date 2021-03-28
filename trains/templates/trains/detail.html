@@ -1,0 +1,29 @@
+{% extends 'cities/base.html' %}
+
+{% block content %}
+  <div class="row">
+      <div class="col-md-8  mx-auto my-2" align="center">
+          <table class="table table-striped">
+          <tr>
+              <th>Номер поезда</th>
+              <th>Откуда</th>
+              <th>Куда</th>
+              <th>Время в пути</th>
+          </tr>
+          <tr>
+              <td>{{ object.name }}</td>
+              <td>{{ object.from_city }}</td>
+              <td>{{ object.to_city }}</td>
+              <td>{{ object.travel_time }}</td>
+          </tr>
+          </table>
+      </div>
+    </div>
+  <div class="row">
+      <div class="col-md-8 mx-auto my-2">
+         <a href="{% url 'trains:list_Train' %}">
+             <button type="submit" class="btn btn-primary">Назад к списку</button>
+         </a>
+      </div>
+    </div>
+{% endblock content %}

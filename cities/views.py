@@ -18,7 +18,7 @@ def index(request):
 
 def list_city(request, pk=None):
     qs = City.objects.all()
-    lst = Paginator(qs, 2)
+    lst = Paginator(qs, 6)
     page_number = request.GET.get('page')
     page_obj = lst.get_page(page_number)
     context = {'page_obj': page_obj}
