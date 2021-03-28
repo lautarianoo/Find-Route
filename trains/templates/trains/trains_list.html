@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Список поездов</h1>
     <div class="row">
-      <div class="col-md-8  mx-auto my-2">
+      <div class="col-md-9  mx-auto my-2">
           <table class="table table-striped">
             <tr>
               <th>Номер поезда</th>
@@ -18,9 +18,13 @@
             <td><a href="{% url 'trains:trains_detail' pk=object.pk %}">{{ object.name }}</a></td>
             <td>{{ object.from_city }}</td>
             <td>{{ object.to_city }}</td>
-            <td>{{ object.travel_time }}</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>{{ object.travel_time }} ч.</td>
+            <td><a href="{% url 'trains:trains_update' pk=object.pk %}">
+              <button type="submit" class="btn btn-primary">Редактировать</button>
+            </a></td>
+            <td><a href="{% url 'trains:trains_delete' pk=object.pk %}">
+              <button type="submit" class="btn btn-danger">Удалить</button>
+            </a></td>
           </tr>
         {% endfor %}
           </table>

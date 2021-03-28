@@ -1,0 +1,14 @@
+{% extends 'cities/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+   <div class="col-md-8 mx-auto">
+     <h1>Создание поезда</h1>
+    <form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+     <button type="submit" class="btn btn-primary my-4">Добавить</button>
+</form>
+  </div>
+</div>
+{% endblock content %}
