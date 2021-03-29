@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cities',
     'bootstrap3',
     'trains',
+    'routes',
 ]
 
 MIDDLEWARE = [
