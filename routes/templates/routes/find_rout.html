@@ -1,9 +1,38 @@
 {% extends 'cities/base.html' %}
 {% load bootstrap3 %}
 {% block content %}
+<h1>Поиск маршрута</h1>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        {% if routes %}
+          <h3>Маршрут{% if routes|length != 1 %}ы {% endif %}
+              из г.{{ cities.from_city }} в г.{{ cities.to_city }}</h3>
+        <br>
+          {% for route in routes %}
+             <h5>Время в пути {{ route.total_time }} ч.</h5>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Cписок поездов</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for train in route.trains %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td colspan="2">Поезд {{ train.name }} из г.{{ train.from_city.name }} в г.{{ train.to_city.name }}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+        <br><br>
+          {% endfor %}
+        {% endif %}
+    </div>
+</div>
   <div class="row">
    <div class="col-md-8 mx-auto my-2">
-     <h1>Поиск маршрута</h1>
     <form action="{% url 'find_routes' %}" method="post">
         {% csrf_token %}
       {{ form.as_p }}
