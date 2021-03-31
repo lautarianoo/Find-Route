@@ -6,6 +6,7 @@ from cities.models import City
 from trains.models import Train
 from django.views.generic import ListView, DetailView
 from routes.models import Route
+from django.contrib.auth.decorators import login_required
 
 def list_routes(request):
     form = RouteForm()
@@ -70,3 +71,4 @@ class RouteDetailView(DetailView):
     model = Route
     qs = Route.objects.all()
     template_name = 'routes/detail.html'
+

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'trains',
     'routes',
+    'accounts',
 ]
 
 MIDDLEWARE = [

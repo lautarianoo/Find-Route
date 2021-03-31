@@ -42,6 +42,18 @@
             <li><a class="dropdown-item {% if request.path == trains_create_url %} active {% endif %}" href="{% url 'trains:trains_add' %}">Добавить поезд</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Кабинет
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+          {% if user.is_authenticated %}
+          <li><a class="dropdown-item" href="{% url 'accounts:logout_user' %}">Выйти</a></li>
+           {% else %}
+           <li><a class="dropdown-item" href="{% url 'accounts:login_user' %}">Войти</a></li>
+          {% endif %}
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
