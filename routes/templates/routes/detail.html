@@ -1,0 +1,27 @@
+{% extends 'cities/base.html' %}
+
+{% block content %}
+  <h1>Маршрут - {{ object.name }}</h1>
+    <div class="row">
+      <div class="col-md-9  mx-auto my-2">
+          <table class="table table-striped">
+            <tr>
+              <th>Название маршрута</th>
+              <th>Откуда</th>
+              <th>Куда</th>
+              <th>Время в пути</th>
+              <th>Список поездов по маршруту</th>
+            </tr>
+          <tr>
+            <td>{{ object.name }}</td>
+            <td>{{ object.from_city }}</td>
+            <td>{{ object.to_city }}</td>
+            <td>{{ object.travel_times }} ч.</td>
+            <td>{% for train in object.trains.all %}
+                  <p><a href="{% url 'trains:trains_detail' pk=train.pk %}">{{ train.name }}</a></p>
+                {% endfor %}</td>
+          </tr>
+          </table>
+      </div>
+    </div>
+{% endblock content %}

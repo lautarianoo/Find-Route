@@ -1,0 +1,23 @@
+{% extends 'cities/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1>Создание маршрута</h1>
+        <form action="{% url 'save_route' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

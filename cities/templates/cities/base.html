@@ -2,6 +2,7 @@
 {% url 'cities:cities' as cities_home_url %}
 {% url 'trains:list_Train' as trains_home_url %}
 {% url 'trains:trains_create' as trains_create_url %}
+{% url 'list_routes' as list_routes %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,8 +31,8 @@
         <li class="nav-item">
           <a class="nav-link {% if request.path == cities_home_url %} active {% endif %}" href="{% url 'cities:cities' %}">Список городов</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+        <li class="nav-item {% if request.path == list_routes %} active {% endif %}">
+          <a class="nav-link" href="{% url 'list_routes' %}">Маршруты</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
