@@ -49,8 +49,10 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
           {% if user.is_authenticated %}
           <li><a class="dropdown-item" href="{% url 'accounts:logout_user' %}">Выйти</a></li>
+          <li><a class="dropdown-item" href="{% url 'accounts:register_user' %}">Создать новый аккаунт</a></li>
            {% else %}
            <li><a class="dropdown-item" href="{% url 'accounts:login_user' %}">Войти</a></li>
+           <li><a class="dropdown-item" href="{% url 'accounts:register_user' %}">Создать аккаунт</a></li>
           {% endif %}
           </ul>
         </li>

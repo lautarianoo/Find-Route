@@ -1,0 +1,11 @@
+{% extends 'cities/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+   <div class="col-md-8 mx-auto">
+     <h1>Приветствуем, {{ new_user.username }}</h1>
+       <h5>Вы зарегистрировались в системе</h5>
+       <h5><a href="{% url 'accounts:login_user' %}">Войти</a></h5>
+  </div>
+</div>
+{% endblock content %}

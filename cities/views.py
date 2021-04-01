@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     if request.method == 'POST':
@@ -29,7 +30,7 @@ class CityDetailView(DetailView):
     qs = City.objects.all()
     template_name = 'cities/detail.html'
 
-class CityDeleteView(SuccessMessageMixin,DeleteView):
+class CityDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = City
     template_name = 'cities/delete.html'
     success_url = reverse_lazy('cities:cities')
